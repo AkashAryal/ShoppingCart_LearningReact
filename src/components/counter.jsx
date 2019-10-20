@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 export default class Counter extends Component {
   //data that component needs
   state={
-    count: 0,
+    count: this.props.value,
     tags: []
   };
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.handleIncrement=this.handleIncrement.bind(this); //allows us to use this in handleIncrement
   }
 
@@ -35,11 +35,13 @@ export default class Counter extends Component {
   }
 
   render() {
+
+
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button onClick={this.handleIncrement}  className="btn btn-secondary btn-sm">Increment</button>
-        {this.renderTags()}
+        <button onClick={() => this.props.onDelete(this.props.id)} className="btn btn-danger btn-sm m-2">Delete</button>
       </div>
     );
   }
